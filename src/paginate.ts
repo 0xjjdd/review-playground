@@ -1,5 +1,8 @@
 /** Page `page` (1-based) of `items`, `perPage` at a time. */
 export function paginate<T>(items: T[], page: number, perPage: number): T[] {
+  if (page < 1) {
+    throw new RangeError("page is 1-based; got " + page);
+  }
   const start = (page - 1) * perPage;
   return items.slice(start, start + perPage);
 }
